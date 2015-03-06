@@ -1,0 +1,8 @@
+bunsen-common for Debian
+------------------------
+
+Common files that might be used by any BunsenLabs packages.
+bl-include.cfg is imported from bunsen-pipemenus 
+and based on cb-include.cfg fron CrunchBang Linux.
+
+ -- John Crawley <john@rafflesnagoya.com>  Fri, 06 Mar 2015 18:00:24 +0900

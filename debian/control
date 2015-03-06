@@ -1,0 +1,17 @@
+Source: bunsen-common
+Section: misc
+Priority: extra
+Maintainer: John Crawley <john@rafflesnagoya.com>
+Build-Depends: debhelper (>= 9)
+Standards-Version: 3.9.5
+Homepage: https://github.com/BunsenLabs/bunsen-common
+Vcs-Git: https://github.com/BunsenLabs/bunsen-common.git
+Vcs-Browser: https://github.com/BunsenLabs/bunsen-common.git
+
+Package: bunsen-common
+Architecture: all
+Depends: ${misc:Depends}
+Description: Various shared files for BunsenLabs.
+ Files holding shared script functions, images
+ and other data which might be used by various packages
+ in BunsenLabs.
