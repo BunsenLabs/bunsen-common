@@ -1,3 +1,10 @@
+bunsen-common (0.1-1) unstable; urgency=low
+
+  * Add XML escaping function for openbox menus.
+  * Add 'pause' option to function say().
+
+ -- John Crawley <john@rafflesnagoya.com>  Sun, 08 Mar 2015 15:38:46 +0900
+
 bunsen-common (0.1) unstable; urgency=low
 
   * Initial release.
