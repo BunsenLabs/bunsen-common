@@ -1,3 +1,10 @@
+bunsen-common (0.1-2) unstable; urgency=low
+
+  * Modify promptInstall() to accept a setup function.
+  * Add underbar escaping for openbox menu labels.
+
+ -- John Crawley <john@rafflesnagoya.com>  Mon, 16 Mar 2015 15:21:56 +0900
+
 bunsen-common (0.1-1) unstable; urgency=low
 
   * Add XML escaping function for openbox menus.
