@@ -1,3 +1,9 @@
+bunsen-common (8.0-2) bunsen-hydrogen; urgency=low
+
+  * Slight readability improvements.
+
+ -- John Crawley <john@rafflesnagoya.com>  Tue, 08 Sep 2015 16:15:06 +0900
+
 bunsen-common (8.0-1) bunsen-hydrogen; urgency=low
 
   * Add new apt handling functions.
