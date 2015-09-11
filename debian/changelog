@@ -1,3 +1,9 @@
+bunsen-common (8.1-1) bunsen-hydrogen; urgency=medium
+
+  * Fix locale bug in apt functions.
+
+ -- John Crawley <john@rafflesnagoya.com>  Fri, 11 Sep 2015 16:47:40 +0900
+
 bunsen-common (8.0-2) bunsen-hydrogen; urgency=low
 
   * Slight readability improvements.
