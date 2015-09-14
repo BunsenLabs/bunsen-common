@@ -1,3 +1,9 @@
+bunsen-common (8.2-1) bunsen-hydrogen; urgency=medium
+
+  * Add --no-install-recommends option to apt functions.
+
+ -- John Crawley <john@rafflesnagoya.com>  Mon, 14 Sep 2015 15:49:37 +0900
+
 bunsen-common (8.1-1) bunsen-hydrogen; urgency=medium
 
   * Fix locale bug in apt functions.
