@@ -2,50 +2,50 @@ bunsen-common (8.2-1) bunsen-hydrogen; urgency=medium
 
   * Add --no-install-recommends option to apt functions.
 
- -- John Crawley <john@rafflesnagoya.com>  Mon, 14 Sep 2015 15:49:37 +0900
+ -- John Crawley <john@bunsenlabs.org>  Mon, 14 Sep 2015 15:49:37 +0900
 
 bunsen-common (8.1-1) bunsen-hydrogen; urgency=medium
 
   * Fix locale bug in apt functions.
 
- -- John Crawley <john@rafflesnagoya.com>  Fri, 11 Sep 2015 16:47:40 +0900
+ -- John Crawley <john@bunsenlabs.org>  Fri, 11 Sep 2015 16:47:40 +0900
 
 bunsen-common (8.0-2) bunsen-hydrogen; urgency=low
 
   * Slight readability improvements.
 
- -- John Crawley <john@rafflesnagoya.com>  Tue, 08 Sep 2015 16:15:06 +0900
+ -- John Crawley <john@bunsenlabs.org>  Tue, 08 Sep 2015 16:15:06 +0900
 
 bunsen-common (8.0-1) bunsen-hydrogen; urgency=low
 
   * Add new apt handling functions.
   * Remove unused function errorReturn.
 
- -- John Crawley <john@rafflesnagoya.com>  Wed, 02 Sep 2015 14:18:13 +0900
+ -- John Crawley <john@bunsenlabs.org>  Wed, 02 Sep 2015 14:18:13 +0900
 
 bunsen-common (0.1-3) unstable; urgency=low
 
   * Add formatting to error message in fn errorExit.
 
- -- John Crawley <john@rafflesnagoya.com>  Wed, 01 Jul 2015 16:52:47 +0900
+ -- John Crawley <john@bunsenlabs.org>  Wed, 01 Jul 2015 16:52:47 +0900
 
 bunsen-common (0.1-2) unstable; urgency=low
 
   * Modify promptInstall() to accept a setup function.
   * Add underbar escaping for openbox menu labels.
 
- -- John Crawley <john@rafflesnagoya.com>  Mon, 16 Mar 2015 15:21:56 +0900
+ -- John Crawley <john@bunsenlabs.org>  Mon, 16 Mar 2015 15:21:56 +0900
 
 bunsen-common (0.1-1) unstable; urgency=low
 
   * Add XML escaping function for openbox menus.
   * Add 'pause' option to function say().
 
- -- John Crawley <john@rafflesnagoya.com>  Sun, 08 Mar 2015 15:38:46 +0900
+ -- John Crawley <john@bunsenlabs.org>  Sun, 08 Mar 2015 15:38:46 +0900
 
 bunsen-common (0.1) unstable; urgency=low
 
   * Initial release.
   * bl-config.cfg imported from bunsen-pipemenus
 
- -- John Crawley <john@rafflesnagoya.com>  Fri, 06 Mar 2015 17:51:39 +0900
+ -- John Crawley <john@bunsenlabs.org>  Fri, 06 Mar 2015 17:51:39 +0900
