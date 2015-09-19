@@ -1,3 +1,10 @@
+bunsen-common (8.3-1) bunsen-hydrogen; urgency=medium
+
+  * Allow arbitary option to safeInstall function.
+  * Add terminalCheck function.
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 19 Sep 2015 17:09:32 +0900
+
 bunsen-common (8.2-1) bunsen-hydrogen; urgency=medium
 
   * Add --no-install-recommends option to apt functions.
