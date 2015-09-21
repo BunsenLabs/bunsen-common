@@ -1,3 +1,9 @@
+bunsen-common (8.4-1) bunsen-hydrogen; urgency=medium
+
+  * Simplify promptInstall(), extend apt functions.
+
+ -- John Crawley <john@bunsenlabs.org>  Mon, 21 Sep 2015 14:49:22 +0900
+
 bunsen-common (8.3-1) bunsen-hydrogen; urgency=medium
 
   * Allow arbitary option to safeInstall function.
