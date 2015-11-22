@@ -1,3 +1,9 @@
+bunsen-common (8.4.1-1) bunsen-hydrogen; urgency=medium
+
+  * Bugfixes committed Sept. 21 & 22
+
+ -- John Crawley <john@bunsenlabs.org>  Sun, 22 Nov 2015 11:31:19 +0900
+
 bunsen-common (8.4-1) bunsen-hydrogen; urgency=medium
 
   * Simplify promptInstall(), extend apt functions.
