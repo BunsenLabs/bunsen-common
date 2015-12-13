@@ -1,3 +1,9 @@
+bunsen-common (8.4.2-1) bunsen-hydrogen; urgency=high
+
+  * bl-include.cfg: safeUpdate(): Fix bug where empty ignore_string suppressed errors. 
+
+ -- John Crawley <john@bunsenlabs.org>  Sun, 13 Dec 2015 14:54:22 +0900
+
 bunsen-common (8.4.1-1) bunsen-hydrogen; urgency=medium
 
   * Bugfixes committed Sept. 21 & 22
