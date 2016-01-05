@@ -1,3 +1,9 @@
+bunsen-common (8.5-1) bunsen-hydrogen; urgency=medium
+
+  * distributor-logo-bunsenlabs.svg: move here from bunsen-images.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 05 Jan 2016 15:25:01 +0900
+
 bunsen-common (8.4.2-1) bunsen-hydrogen; urgency=high
 
   * bl-include.cfg: safeUpdate(): Fix bug where empty ignore_string suppressed errors. 

@@ -11,6 +11,8 @@ Vcs-Browser: https://github.com/BunsenLabs/bunsen-common.git
 Package: bunsen-common
 Architecture: all
 Depends: ${misc:Depends}
+Replaces: bunsen-images (<< 8.3.1-1)
+Breaks: bunsen-images (<< 8.3.1-1)
 Description: Various shared files for BunsenLabs.
  Files holding shared script functions, images
  and other data which might be used by various packages
