@@ -1,3 +1,10 @@
+bunsen-common (8.6-1) bunsen-hydrogen; urgency=medium
+
+  * bl-include.cfg: Add new function declareDependencies().
+  * bl-include.cfg: Improve apt functions.
+
+ -- John Crawley <john@bunsenlabs.org>  Mon, 18 Jan 2016 15:27:01 +0900
+
 bunsen-common (8.5-1) bunsen-hydrogen; urgency=medium
 
   * distributor-logo-bunsenlabs.svg: move here from bunsen-images.
