@@ -1,3 +1,9 @@
+bunsen-common (8.6.1-1) bunsen-hydrogen; urgency=high
+
+  * bl-include.cfg: Fix broken "if" construction.
+
+ -- John Crawley <john@bunsenlabs.org>  Thu, 28 Jan 2016 10:32:15 +0900
+
 bunsen-common (8.6-2) bunsen-hydrogen; urgency=low
 
   * debian/copyright: Update year.
