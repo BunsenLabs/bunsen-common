@@ -1,3 +1,9 @@
+bunsen-common (8.7-2) bunsen-hydrogen; urgency=medium
+
+  * Add yad-includes to debian/bunsen-common.install.
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 27 Feb 2016 21:15:02 +0900
+
 bunsen-common (8.7-1) bunsen-hydrogen; urgency=medium
 
   * Add yad-includes file.
