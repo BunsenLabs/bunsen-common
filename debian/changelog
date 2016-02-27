@@ -1,3 +1,10 @@
+bunsen-common (8.7-1) bunsen-hydrogen; urgency=medium
+
+  * Add yad-includes file.
+  * bl-include.cfg: Function say(): adjust to terminal width.
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 27 Feb 2016 11:16:08 +0900
+
 bunsen-common (8.6.1-1) bunsen-hydrogen; urgency=high
 
   * bl-include.cfg: Fix broken "if" construction.

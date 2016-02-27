@@ -1,0 +1,92 @@
+# variables and functions for yad in scripts
+
+# These are global options for all the yad functions defined below.
+# You can add to them for the duration of your script with something like:
+# yad_common_args+=(--image=debian)
+# Override options already set with, eg:
+# yad_common_args+=(--borders=30)
+# Unset options with 0, eg:
+# yad_common_args+=(--center=0)
+
+yad_common_args=('--window-icon=distributor-logo-bunsenlabs' '--center' '--borders=20')
+yad_popup_args=('--undecorated' '--fixed' '--on-top')
+
+# Call these functions as shorthand for simple popups etc.
+# Append any options you want to add, change or unset.
+# Plain strings will be regarded as --text eg:
+# yad_info "It's not as bad as you think."
+# Buttons are identified by their return values
+# so their labels can be changed, eg:
+# yad_error 'Something went wrong.' --button='Resigned acceptance':0
+# New buttons will be added on the right, eg:
+# yad_question 'Continue?' --button='Tell me more':2
+
+yad_question(){
+    local yadargs=()
+    _yad_setargs '--button=Yes:0' '--button=No:1' "$@"
+    yad "${yadargs[@]}"
+}
+yad_info(){
+    local yadargs=()
+    _yad_setargs '--button=OK:0' "$@"
+    yad "${yadargs[@]}"
+}
+yad_error(){
+    local yadargs=()
+    _yad_setargs '--button=OK:0' '--image=dialog-error' "$@"
+    yad "${yadargs[@]}"
+}
+
+############################################################################
+# DO NOT call this functon directly.
+# It is used by the yad functions above.
+_yad_setargs(){
+    # Catch direct calls
+    case "${FUNCNAME[1]}" in
+        yad_question|yad_info|yad_error)
+            :;;
+        *)
+            echo "$0:${FUNCNAME[0]}: this function is only to be called by yad_question, yad_info or yad_error."
+            return 1
+            ;;
+    esac
+    local i key value
+    local button_with_id_pattern='^(.*):(.+)$'
+    declare -A argsetter
+    local argsetter=()
+    local button_ids=()
+    for i in "${yad_common_args[@]}" "${yad_popup_args[@]}" "$@"
+    do
+        IFS='=' read -r key value <<<"$i"
+        [[ "$key" = --button && "$value" =~ $button_with_id_pattern ]] && {
+            key=--button"${BASH_REMATCH[2]}"
+            button_ids+=("$key")
+        }
+        [[ $value = 0 ]] && {
+            [[ ${argsetter["$key"]+X} ]] && unset "argsetter[$key]"
+            continue
+        }
+        [[ $key = --* ]] || {
+            argsetter[--text]="$key"
+            continue
+        }
+        argsetter[$key]="$value"
+    done
+    i=
+    for i in "${!argsetter[@]}"
+    do
+        [[ "$i" = --button* ]] && continue
+        if [[ ${argsetter[$i]} ]]
+        then
+            yadargs+=("$i=${argsetter[$i]}")
+        else
+            yadargs+=("$i")
+        fi
+    done
+    i=
+    for i in "${button_ids[@]}"
+    do
+        [[ ${argsetter[$i]} ]] && yadargs+=("--button=${argsetter[$i]}")
+        unset "argsetter[$i]"
+    done
+}
