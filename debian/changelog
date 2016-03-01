@@ -1,3 +1,10 @@
+bunsen-common (8.7.1-1) bunsen-hydrogen; urgency=medium
+
+  * bl-include.cfg: Protect functions against nounset shell option,
+    add package status testing functions.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 01 Mar 2016 12:35:44 +0900
+
 bunsen-common (8.7-2) bunsen-hydrogen; urgency=medium
 
   * Add yad-includes to debian/bunsen-common.install.
