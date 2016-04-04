@@ -12,8 +12,8 @@ Package: bunsen-common
 Architecture: all
 Depends: ${misc:Depends}
 Replaces: bunsen-images (<< 8.3.1-1)
-Breaks: bunsen-images (<< 8.3.1-1), bunsen-pipemenus (<< ), bunsen-welcome (<< )
-Description: Various shared files for BunsenLabs.
+Breaks: bunsen-images (<< 8.3.1-1), bunsen-pipemenus (<< 8.9-1), bunsen-welcome (<< 8.10-1)
+Description: Various shared files for BunsenLabs
  Files holding shared script functions, images
  and other data which might be used by various packages
  in BunsenLabs.
