@@ -1,0 +1,122 @@
+#!/bin/bash
+#    bl-install a wrapper round the promptInstall() function in bl-include.cfg
+#    It may be called by other scripts or menus
+#    to install Debian packages in a terminal window.
+#    Copyright (C) 2016 John Crawley    <john@bunsenlabs.org>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+HELP='bl-install: a wrapper round the promptInstall() function in bl-include.cfg
+
+Usage:
+bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" package [package...]
+
+    -h --help                   show this message and exit
+    -n --name       <string>    descriptive name of package(s) to be installed
+    -m --message    <string>    message to display to user before installing
+    -f --file       <filepath>  file to hold return value of script on exit
+
+Specified options may be provided in any order.
+If -n, -m or -f are used, they must be followed by an argument.
+If -n or -m are absent they will be generated automatically.
+If -f is set, the script will write its exit return value there,
+so a calling script can test for success.
+All other arguments are taken as package names to install.
+'
+
+BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
+
+trap 'send_return' EXIT
+
+send_return(){
+    local retval=$?
+    [[ -w "$retfile" ]] && echo "$retval" > "$retfile"
+}
+
+if ! . "$BL_COMMON_LIBDIR/bl-include.cfg" 2> /dev/null; then
+    echo $"Error: Failed to locate bl-include.cfg in $BL_COMMON_LIBDIR" >&2
+    exit 1
+fi
+
+name=
+message=
+retfile=
+packages=()
+
+while [[ ${1+x} ]]
+do
+    case "$1" in
+    -n|--name)
+        name="$2"
+        shift 2
+        ;;
+    -m|--message)
+        message="$2"
+        shift 2
+        ;;
+    -f|--file)
+        retfile="$2"
+        shift 2
+        ;;
+    -h|--help)
+        echo "$HELP"
+        exit 0
+        ;;
+    -*)
+        echo "$0: $1: no such option"$'\n' >&2
+        echo "$HELP"
+        exit 1
+        ;;
+    *)
+        packages+=($1)
+        shift
+        ;;
+    esac
+done
+
+[[ ${#packages[@]} -gt 0 ]] || {
+    echo "$0: no packages specified"$'\n' >&2
+    echo "$HELP"
+    exit 1
+}
+
+for i in "${packages[@]}"
+do
+    [[ $i =~ ^[a-z0-9][a-z0-9+.-]+$ ]] || {
+        echo "$i is not a valid Debian package name"$'\n' >&2
+        echo "$HELP"
+        exit 1
+    }
+done
+
+[[ $name ]] || {
+    words=(${packages[0]//-/ })
+    name="${words[*]^}"
+}
+
+[[ $message ]] || {
+    message="This script will install $name"
+}
+
+terminalCheck -T "Install $name" --name "$name" --message "$message" "${packages[@]}"
+
+allInstalled "${packages[@]}" && {
+    say "$name: already installed"
+    sleep 2
+    exit 0
+}
+
+promptInstall "$name" "$message" "${packages[@]}" || errorExit 'Install failed'
+
+exit
