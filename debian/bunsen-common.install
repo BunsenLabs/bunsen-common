@@ -1,3 +1,4 @@
 bl-include.cfg usr/lib/bunsen/common
 yad-includes usr/lib/bunsen/common
 distributor-logo-bunsenlabs.svg usr/share/icons/hicolor/scalable/places
+bl-install usr/bin
