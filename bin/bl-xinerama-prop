@@ -1,0 +1,47 @@
+#!/usr/bin/env python2.7
+#
+
+#    bl-xinerama-prop: script to get xinerama properties in a shell script
+#    Copyright (C) 2016 xaos52 <xaos52@bunsenlabs.org>
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+from __future__ import print_function
+import pygtk
+pygtk.require('2.0')
+import gtk
+import sys
+import argparse
+
+
+ap = argparse.ArgumentParser(description="""Helper python script.
+Using the current cursor position, this script prints the dimensions 
+of the monitor that the cursor is on.
+""")
+opts = ap.parse_args(sys.argv[1:])
+
+def main():
+    try:
+        display = gtk.gdk.Display(gtk.gdk.get_display())
+        screen, x, y, flags = display.get_pointer()
+        curmon = screen.get_monitor_at_point(x, y)
+        _, _, width, height = screen.get_monitor_geometry(curmon)
+        print("{} {}".format(width, height))
+        return 0
+    except:
+        print("Not running under X.", file=sys.stderr)
+        return 1
+
+if __name__ == "__main__":
+    sys.exit(main())
