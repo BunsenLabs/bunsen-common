@@ -1,3 +1,10 @@
+bunsen-common (8.8.2-1) bunsen-hydrogen; urgency=medium
+
+  * Add script /usr/bin/bl-install
+  * distributor-logo-bunsenlabs.svg: replace with Faenza-style button
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 14 Jan 2017 14:37:05 +0900
+
 bunsen-common (8.8.1-2) bunsen-hydrogen; urgency=high
 
   * debian/control: Add dependency on bunsen-keyring.
