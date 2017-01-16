@@ -1,3 +1,9 @@
+bunsen-common (8.9-1) bunsen-hydrogen; urgency=medium
+
+  * Version bump for deuterium merge
+
+ -- John Crawley <john@bunsenlabs.org>  Mon, 16 Jan 2017 16:16:04 +0900
+
 bunsen-common (8.8.2-1) bunsen-hydrogen; urgency=medium
 
   * Add script /usr/bin/bl-install
