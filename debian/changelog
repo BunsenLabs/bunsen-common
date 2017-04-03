@@ -1,3 +1,9 @@
+bunsen-common (8.9.1-1) bunsen-hydrogen; urgency=low
+
+  * bl-include.cfg: allInstalled(): change to much faster test.
+
+ -- John Crawley <john@bunsenlabs.org>  Mon, 03 Apr 2017 17:41:33 +0900
+
 bunsen-common (8.9-1) bunsen-hydrogen; urgency=medium
 
   * Version bump for deuterium merge
