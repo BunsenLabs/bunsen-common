@@ -1,3 +1,10 @@
+bunsen-common (9.0-1) helium; urgency=medium
+
+  * Version change for helium release.
+  * Update some copyright dates.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 09 May 2017 12:03:10 +0900
+
 bunsen-common (8.9.2-1) bunsen-hydrogen; urgency=medium
 
   * bl-include.cfg: Revert change to allInstalled(), use dpkg.
