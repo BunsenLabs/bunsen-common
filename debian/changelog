@@ -1,3 +1,9 @@
+bunsen-common (9.0.1-1) helium; urgency=medium
+
+  * bl-include.cfg: apt functions: improve handling of stdout.
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 01 Jul 2017 18:07:21 +0900
+
 bunsen-common (9.0-2) helium; urgency=medium
 
   * debian-control: remove dependency on bunsen-keyring for helium-dev
