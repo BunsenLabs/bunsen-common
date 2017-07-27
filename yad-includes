@@ -15,6 +15,16 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# These functions can be used in user scripts too, by first sourcing this file, eg:
+# BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
+# if ! . "$BL_COMMON_LIBDIR/yad-includes" 2> /dev/null; then
+#     echo $"Error: Failed to locate yad-includes in $BL_COMMON_LIBDIR" >&2
+#     exit 1
+# fi
+
+# NOTE: Do not source this file in non-Bash shell scripts.
+# It uses some "bashisms".
+
 # These are global options for all the yad functions defined below.
 # You can add to them for the duration of your script with something like:
 # yad_common_args+=(--image=debian)
