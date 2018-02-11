@@ -2,7 +2,7 @@ Source: bunsen-common
 Section: misc
 Priority: optional
 Maintainer: John Crawley <john@bunsenlabs.org>
-Build-Depends: debhelper (>= 9)
+Build-Depends: debhelper (>= 9), help2man
 Standards-Version: 3.9.5
 Homepage: https://github.com/BunsenLabs/bunsen-common
 Vcs-Git: https://github.com/BunsenLabs/bunsen-common.git
