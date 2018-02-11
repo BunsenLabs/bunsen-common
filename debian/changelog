@@ -1,3 +1,11 @@
+bunsen-common (9.0.2-1) helium; urgency=medium
+
+  * Add simple auto-generated man page for bl-install.
+  * Update copyright years.
+  * debian/control: Change Priority to 'optional'.
+
+ -- John Crawley <john@bunsenlabs.org>  Sun, 11 Feb 2018 15:08:38 +0900
+
 bunsen-common (9.0.1-1) helium; urgency=medium
 
   * bl-include.cfg: apt functions: improve handling of stdout.
