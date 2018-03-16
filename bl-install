@@ -41,7 +41,7 @@ trap 'send_return' EXIT
 
 send_return(){
     local retval=$?
-    [[ -w "$retfile" ]] && echo "$retval" > "$retfile"
+    [[ -n "$retfile" ]] && echo "$retval" > "$retfile"
 }
 
 if ! . "$BL_COMMON_LIBDIR/bl-include.cfg" 2> /dev/null; then
@@ -109,7 +109,12 @@ done
     message="This script will install $name"
 }
 
-terminalCheck -T "Install $name" --name "$name" --message "$message" "${packages[@]}"
+if [[ -n "$retfile" ]]
+then
+    terminalCheck -T "Install $name" --file "$retfile" --name "$name" --message "$message" "${packages[@]}"
+else
+    terminalCheck -T "Install $name" --name "$name" --message "$message" "${packages[@]}"
+fi
 
 allInstalled "${packages[@]}" && {
     say "$name: already installed"
