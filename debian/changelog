@@ -1,3 +1,10 @@
+bunsen-common (9.0.3-1) helium; urgency=high
+
+  * bl-install: fix buggy handling of return value.
+  * bl-include.cfg: promptInstall(): return 1 if user declines to install.
+
+ -- John Crawley <john@bunsenlabs.org>  Fri, 16 Mar 2018 16:06:15 +0900
+
 bunsen-common (9.0.2-1) helium; urgency=medium
 
   * Add simple auto-generated man page for bl-install.
