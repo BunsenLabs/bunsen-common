@@ -1,3 +1,9 @@
+bunsen-common (9.0.3-2) helium; urgency=low
+
+  * debian/copyright: update year.
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 28 Jul 2018 17:02:12 +0900
+
 bunsen-common (9.0.3-1) helium; urgency=high
 
   * bl-install: fix buggy handling of return value.
