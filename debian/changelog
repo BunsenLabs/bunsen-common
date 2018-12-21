@@ -1,3 +1,10 @@
+bunsen-common (10.0.1-1) lithium; urgency=medium
+
+  * Rename bl-include.cfg to bl-includes.
+  * yad-includes: allow passing of multi-line text fields to yad functions.
+
+ -- John Crawley <john@bunsenlabs.org>  Fri, 21 Dec 2018 17:34:34 +0900
+
 bunsen-common (10.0-1) lithium; urgency=medium
 
   * Version change for lithium release.
