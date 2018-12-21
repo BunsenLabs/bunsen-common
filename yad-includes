@@ -82,6 +82,10 @@ _yad_setargs(){
     local button_ids=()
     for i in "${yad_common_args[@]}" "${yad_popup_args[@]}" "$@"
     do
+        [[ $i = --* ]] || {
+            argsetter[--text]="$i"
+            continue
+        }
         IFS='=' read -r key value <<<"$i"
         [[ "$key" = --button && "$value" =~ $button_with_id_pattern ]] && {
             key=--button"${BASH_REMATCH[2]}"
@@ -89,10 +93,6 @@ _yad_setargs(){
         }
         [[ $value = 0 ]] && {
             [[ ${argsetter["$key"]+X} ]] && unset "argsetter[$key]"
-            continue
-        }
-        [[ $key = --* ]] || {
-            argsetter[--text]="$key"
             continue
         }
         argsetter[$key]="$value"
