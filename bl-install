@@ -1,5 +1,5 @@
 #!/bin/bash
-#    bl-install a wrapper round the promptInstall() function in bl-include.cfg
+#    bl-install a wrapper round the promptInstall() function in bl-includes
 #    It may be called by other scripts or menus
 #    to install Debian packages in a terminal window.
 #    Copyright (C) 2016 John Crawley    <john@bunsenlabs.org>
@@ -17,7 +17,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-HELP='bl-install: a wrapper round the promptInstall() function in bl-include.cfg
+HELP='bl-install: a wrapper round the promptInstall() function in bl-includes
 
 Usage:
 bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" package [package...]
@@ -44,8 +44,8 @@ send_return(){
     [[ -n "$retfile" ]] && echo "$retval" > "$retfile"
 }
 
-if ! . "$BL_COMMON_LIBDIR/bl-include.cfg" 2> /dev/null; then
-    echo $"Error: Failed to locate bl-include.cfg in $BL_COMMON_LIBDIR" >&2
+if ! . "$BL_COMMON_LIBDIR/bl-includes" 2> /dev/null; then
+    echo $"Error: Failed to locate bl-includes in $BL_COMMON_LIBDIR" >&2
     exit 1
 fi
 

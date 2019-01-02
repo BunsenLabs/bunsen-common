@@ -1,4 +1,4 @@
-#    bl-include.cfg - Variables and functions commonly used in custom scripts
+#    bl-includes - Variables and functions commonly used in custom scripts
 #    for Bunsen Labs Linux.
 #    Copyright (C) 2012 Philip Newborough <corenominal@corenominal.org>
 #    Copyright (C) 2013 Aleks-Daniel Jakimenko
@@ -20,8 +20,8 @@
 
 # These functions can be used in user scripts too, by first sourcing this file, eg:
 # BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
-# if ! . "$BL_COMMON_LIBDIR/bl-include.cfg" 2> /dev/null; then
-#     echo $"Error: Failed to locate bl-include.cfg in $BL_COMMON_LIBDIR" >&2
+# if ! . "$BL_COMMON_LIBDIR/bl-includes" 2> /dev/null; then
+#     echo $"Error: Failed to locate bl-includes in $BL_COMMON_LIBDIR" >&2
 #     exit 1
 # fi
 
