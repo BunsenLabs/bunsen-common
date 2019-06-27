@@ -13,5 +13,5 @@ Architecture: all
 Depends: ${misc:Depends}
 Description: Various shared files for BunsenLabs
  Files holding shared script functions, images
- and other data which might be used by various packages
+ and other data which will be used by various packages
  in BunsenLabs.

@@ -2,4 +2,4 @@ BunsenLabs Common Files
 =======================
 
 These are files holding shell functions, images etc. 
-that might be needed by various BunsenLabs packages.
+that will be needed by various BunsenLabs packages.

@@ -2,7 +2,7 @@
 #    for Bunsen Labs Linux.
 #    Copyright (C) 2012 Philip Newborough <corenominal@corenominal.org>
 #    Copyright (C) 2013 Aleks-Daniel Jakimenko
-#    Copyright (C) 2015-2017  John Crawley <john@bunsenlabs.org>
+#    Copyright (C) 2015-2019  John Crawley <john@bunsenlabs.org>
 #    Copyright (C) 2016  xaos52 <xaos52@gmail.com>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -249,16 +249,10 @@ prompt() {
     done
 }
 
-# Usage: promptInstall [--apt-get-option] name description package [package...]
-# Use: promptInstall [--apt-get-option] --setup functionname name desc...
-# to have functionname run first
+# Usage: promptInstall name description [--apt-get-option] package [package...]
+# To have some defined function - functionname - run first, use:
+# promptInstall --setup functionname name desc...
 promptInstall() {
-    local arg=
-    if [[ $1 = -* && $1 != --setup ]]; then
-        arg=$1
-        shift
-    fi
-
     local setupFunction=
     if [[ $1 = '--setup' ]]; then
         if [[ -n ${2-} && $(type -t "$2") = 'function'  ]]; then
@@ -294,7 +288,7 @@ $2
 
     tput clear
     say 'Installing package...' 1
-    safeInstall "$arg" "${@:3}" || return 1
+    safeInstall "${@:3}" || return 1
 
     tput clear
     say "
