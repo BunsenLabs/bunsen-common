@@ -1,3 +1,4 @@
+#!/bin/bash
 #    bl-includes - Variables and functions commonly used in custom scripts
 #    for Bunsen Labs Linux.
 #    Copyright (C) 2012 Philip Newborough <corenominal@corenominal.org>
@@ -89,12 +90,15 @@ OBlabelEscape() {
 terminalCheck() {
     if ! [[ -t 0 && -t 1 && -t 2 ]]; then # not attached to terminal
         if [[ -n $DISPLAY ]]; then # running X
+            if [[ $( readlink -f /usr/bin/x-terminal-emulator ) = /usr/bin/lxterminal ]];then
+                extra_arg='--no-remote' # otherwise lxterminal does not start a new process
+            fi
             if [[ ${1-} = '-T' ]];then
                 local title=${2-}
                 shift 2
-                exec x-terminal-emulator -T "$title" -e "$0" "$@"
+                exec x-terminal-emulator $extra_arg -T "$title" -e "$0" "$@"
             else
-                exec x-terminal-emulator -e "$0" "$@"
+                exec x-terminal-emulator $extra_arg -e "$0" "$@"
             fi
         else
             echo "$0: no terminal" >&2

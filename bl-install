@@ -1,7 +1,10 @@
 #!/bin/bash
-#    bl-install a wrapper round the promptInstall() function in bl-includes
+#    bl-install: a wrapper round the promptInstall() function in bl-includes
 #    It may be called by other scripts or menus
-#    to install Debian packages in a terminal window.
+#    to install Debian packages in a popup terminal window.
+#    ( It is not needed in a script known to be running in a terminal;
+#     in that case, just use promptInstall() )
+#
 #    Copyright (C) 2016 John Crawley    <john@bunsenlabs.org>
 #
 #    This program is free software: you can redistribute it and/or modify
@@ -33,6 +36,12 @@ If -n or -m are absent they will be generated automatically.
 If -f is set, the script will write its exit return value there,
 so a calling script can test for success.
 All other arguments are taken as package names to install.
+
+This script will open a new terminal window to run the installer,
+and fetch the return value from a temporary file.
+This is useful if launching from a GUI, but in a script known to be
+already running in a terminal, it is not needed.
+The promptInstall() function from bl-includes is enough.
 '
 
 BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
