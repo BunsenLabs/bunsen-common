@@ -90,16 +90,33 @@ OBlabelEscape() {
 terminalCheck() {
     if ! [[ -t 0 && -t 1 && -t 2 ]]; then # not attached to terminal
         if [[ -n $DISPLAY ]]; then # running X
-            if [[ $( readlink -f /usr/bin/x-terminal-emulator ) = /usr/bin/lxterminal ]];then
-                extra_arg='--no-remote' # otherwise lxterminal does not start a new process
-            fi
+            local -a termcmd args
+            local termname
             if [[ ${1-} = '-T' ]];then
                 local title=${2-}
                 shift 2
-                exec x-terminal-emulator $extra_arg -T "$title" -e "$0" "$@"
-            else
-                exec x-terminal-emulator $extra_arg -e "$0" "$@"
             fi
+            termname=$( readlink /etc/alternatives/x-terminal-emulator )
+            case ${termname##*/} # cope with terminal inconsistencies
+            in
+                lxterminal)
+                    termcmd=(lxterminal --no-remote) # otherwise lxterminal does not start a new process
+                    [[ -n $title ]] && termcmd+=(-T "$title")
+                    args=(-e)
+                    ;;
+                gnome-terminal.wrapper)
+                    termcmd=(gnome-terminal --wait) # gnome-terminal.wrapper does not support --wait
+                    [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
+                    args=(--) # -x is deprecated
+                    ;;
+                *)
+                    termcmd=(x-terminal-emulator)
+                    [[ -n $title ]] && termcmd+=(-T "$title")
+                    args=(-e)
+                    ;;
+            esac
+            args+=("$0" "$@")
+            exec "${termcmd[@]}" "${args[@]}"
         else
             echo "$0: no terminal" >&2
             exit 1
