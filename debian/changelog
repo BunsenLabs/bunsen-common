@@ -1,3 +1,9 @@
+bunsen-common (10.1.2-1) lithium; urgency=medium
+
+  * bl-includes: terminalCheck(): handle quirky terminals.
+
+ -- John Crawley <john@bunsenlabs.org>  Sun, 28 Jul 2019 16:37:23 +0900
+
 bunsen-common (10.1.1-1) lithium; urgency=medium
 
   * bl-includes: let terminalCheck() force lxterminal to start a new process.
