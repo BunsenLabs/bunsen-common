@@ -85,7 +85,7 @@ OBlabelEscape() {
 
 ########################################################################
 
-# rerun script in terminal if necessary
+# rerun the calling script in terminal if necessary
 # Usage: terminalCheck [ -T title ] [arguments...]
 terminalCheck() {
     if ! [[ -t 0 && -t 1 && -t 2 ]]; then # not attached to terminal
@@ -97,7 +97,10 @@ terminalCheck() {
                 shift 2
             fi
             termname=$( readlink /etc/alternatives/x-terminal-emulator )
-            case ${termname##*/} # cope with terminal inconsistencies
+            termname=${termname##*/}
+            badterm_msg="$0: $termname is not supported.
+Please choose a different x-terminal-emulator."
+            case $termname # cope with terminal inconsistencies
             in
                 lxterminal)
                     termcmd=(lxterminal --no-remote) # otherwise lxterminal does not start a new process
@@ -109,8 +112,12 @@ terminalCheck() {
                     [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
                     args=(--) # -x is deprecated
                     ;;
+                sakura|terminology)
+                    echo "$badterm_msg" >&2
+                    exit 1
+                    ;;
                 *)
-                    termcmd=(x-terminal-emulator)
+                    termcmd=(x-terminal-emulator) # the normal case
                     [[ -n $title ]] && termcmd+=(-T "$title")
                     args=(-e)
                     ;;
