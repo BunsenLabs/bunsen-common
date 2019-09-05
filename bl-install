@@ -5,7 +5,7 @@
 #    ( It is not needed in a script known to be running in a terminal;
 #     in that case, just use promptInstall() )
 #
-#    Copyright (C) 2016 John Crawley    <john@bunsenlabs.org>
+#    Copyright (C) 2016-2019 John Crawley    <john@bunsenlabs.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 HELP='bl-install: a wrapper round the promptInstall() function in bl-includes
 
 Usage:
-bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" package [package...]
+bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" [apt option] package [package...]
 
     -h --help                   show this message and exit
     -n --name       <string>    descriptive name of package(s) to be installed
@@ -35,7 +35,7 @@ If -n, -m or -f are used, they must be followed by an argument.
 If -n or -m are absent they will be generated automatically.
 If -f is set, the script will write its exit return value there,
 so a calling script can test for success.
-All other arguments are taken as package names to install.
+All other arguments are taken as apt-get options or package names to install.
 
 This script will open a new terminal window to run the installer,
 and fetch the return value from a temporary file.
@@ -61,6 +61,7 @@ fi
 name=
 message=
 retfile=
+args=()
 packages=()
 
 while [[ ${1+x} ]]
@@ -82,13 +83,17 @@ do
         echo "$HELP"
         exit 0
         ;;
-    -*)
-        echo "$0: $1: no such option"$'\n' >&2
-        echo "$HELP"
-        exit 1
+    -t|--target-release|--default-release|-c|--config-file|-o|--option) # apt-get options taking a value
+        args+=( "$1" "$2" )
+        shift 2
+        ;;
+    -*) # other apt-get options
+        args+=($1)
+        shift
         ;;
     *)
-        packages+=($1)
+        args+=($1)
+        packages+=($1) # assume any other argument is a package
         shift
         ;;
     esac
@@ -99,15 +104,6 @@ done
     echo "$HELP"
     exit 1
 }
-
-for i in "${packages[@]}"
-do
-    [[ $i =~ ^[a-z0-9][a-z0-9+.-]+$ ]] || {
-        echo "$i is not a valid Debian package name"$'\n' >&2
-        echo "$HELP"
-        exit 1
-    }
-done
 
 [[ $name ]] || {
     words=(${packages[0]//-/ })
@@ -120,10 +116,19 @@ done
 
 if [[ -n "$retfile" ]]
 then
-    terminalCheck -T "Install $name" --file "$retfile" --name "$name" --message "$message" "${packages[@]}"
+    terminalCheck -T "Install $name" --file "$retfile" --name "$name" --message "$message" "${args[@]}"
 else
-    terminalCheck -T "Install $name" --name "$name" --message "$message" "${packages[@]}"
+    terminalCheck -T "Install $name" --name "$name" --message "$message" "${args[@]}"
 fi
+
+for i in "${packages[@]}"
+do
+    [[ $i =~ ^[a-z0-9][a-z0-9+.-]+$ ]] || {
+        say "$i is not a valid Debian package name"$'\n' >&2
+        echo "$HELP"
+        exit 1
+    }
+done
 
 allInstalled "${packages[@]}" && {
     say "$name: already installed"
@@ -131,6 +136,6 @@ allInstalled "${packages[@]}" && {
     exit 0
 }
 
-promptInstall "$name" "$message" "${packages[@]}" || errorExit 'Install failed'
+promptInstall "$name" "$message" "${args[@]}" || errorExit 'Install failed or abandoned.'
 
 exit
