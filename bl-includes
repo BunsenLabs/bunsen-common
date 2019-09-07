@@ -36,6 +36,7 @@ menuStart() {
     echo '    <openbox_pipe_menu>'
 }
 
+
 # Usage: menuItem label command
 menuItem() {
     echo "        <item label=\"$(OBlabelEscape "$1")\">

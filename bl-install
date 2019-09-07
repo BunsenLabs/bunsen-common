@@ -114,11 +114,15 @@ done
     message="This script will install $name"
 }
 
+# When using -e, lxterminal will swallow --name and following arg from
+# succeeding command line for some reason, so use -n instead.
+# Only "--name" seems affected by this bug.
+# Most other terminals are OK.
 if [[ -n "$retfile" ]]
 then
-    terminalCheck -T "Install $name" --file "$retfile" --name "$name" --message "$message" "${args[@]}"
+    terminalCheck -T "Install $name" --file "$retfile" -n "$name" --message "$message" "${args[@]}"
 else
-    terminalCheck -T "Install $name" --name "$name" --message "$message" "${args[@]}"
+    terminalCheck -T "Install $name" -n "$name" --message "$message" "${args[@]}"
 fi
 
 for i in "${packages[@]}"
