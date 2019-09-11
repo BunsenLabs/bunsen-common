@@ -23,21 +23,25 @@
 HELP='bl-install: a wrapper round the promptInstall() function in bl-includes
 
 Usage:
-bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" [apt option] package [package...]
+bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" --setup "function_name" [apt option] package [package...]
 
     -h --help                   show this message and exit
     -n --name       <string>    descriptive name of package(s) to be installed
     -m --message    <string>    message to display to user before installing
     -f --file       <filepath>  file to hold return value of script on exit
+    --setup         <function_name>  function to run before installation
 
 Specified options may be provided in any order.
 If -n, -m or -f are used, they must be followed by an argument.
 If -n or -m are absent they will be generated automatically.
 If -f is set, the script will write its exit return value there,
 so a calling script can test for success.
+If --setup is used, <function_name> must exist as a function in the
+environment, so will probably have to be exported by the calling script.
+
 All other arguments are taken as apt-get options or package names to install.
 
-This script will open a new terminal window to run the installer,
+This script will open a terminal window to run the installer, if needed,
 and fetch the return value from a temporary file.
 This is useful if launching from a GUI, but in a script known to be
 already running in a terminal, it is not needed.
@@ -61,6 +65,8 @@ fi
 name=
 message=
 retfile=
+f_args=()
+s_args=()
 args=()
 packages=()
 
@@ -77,6 +83,12 @@ do
         ;;
     -f|--file)
         retfile="$2"
+        f_args+=( "$1" "$2" )
+        shift 2
+        ;;
+    --setup)
+        function_name="$2"
+        s_args+=( "$1" "$2" )
         shift 2
         ;;
     -h|--help)
@@ -105,25 +117,22 @@ done
     exit 1
 }
 
-[[ $name ]] || {
+[[ -n $name ]] || {
     words=(${packages[0]//-/ })
     name="${words[*]^}"
 }
 
-[[ $message ]] || {
+[[ -n $message ]] || {
     message="This script will install $name"
 }
 
-# When using -e, lxterminal will swallow --name and following arg from
-# succeeding command line for some reason, so use -n instead.
+# When using -e, lxterminal or terminator will swallow --name
+# and following arg from succeeding command line,
+# so use -n instead.
 # Only "--name" seems affected by this bug.
 # Most other terminals are OK.
-if [[ -n "$retfile" ]]
-then
-    terminalCheck -T "Install $name" --file "$retfile" -n "$name" --message "$message" "${args[@]}"
-else
-    terminalCheck -T "Install $name" -n "$name" --message "$message" "${args[@]}"
-fi
+
+terminalCheck -T "Install $name" -n "$name" --message "$message" "${f_args[@]}" "${s_args[@]}" "${args[@]}"
 
 for i in "${packages[@]}"
 do
@@ -139,6 +148,10 @@ allInstalled "${packages[@]}" && {
     sleep 2
     exit 0
 }
+
+if [[ -n $function_name && $(type -t "$function_name") = 'function' ]]; then
+    "$function_name" || errorExit "Setup function $function_name failed"
+fi
 
 promptInstall "$name" "$message" "${args[@]}" || errorExit 'Install failed or abandoned.'
 
