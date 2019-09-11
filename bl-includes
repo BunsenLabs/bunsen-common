@@ -113,7 +113,7 @@ Please choose a different x-terminal-emulator."
                     [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
                     args=(--) # -x is deprecated
                     ;;
-                sakura|terminology)
+                qterminal|terminology)
                     echo "$badterm_msg" >&2
                     exit 1
                     ;;
