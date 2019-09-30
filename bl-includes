@@ -158,6 +158,11 @@ Please choose a different x-terminal-emulator."
                     [[ -n $title ]] && termcmd+=(-T "$title")
                     args=(-e)
                     ;;
+                mate-terminal.wrapper)
+                    termcmd=(mate-terminal --disable-factory) # mate-terminal.wrapper does not support --disable-factory
+                    [[ -n $title ]] && termcmd+=(-t "$title") # but mate-terminal needs -t for -T option
+                    args=(-x)
+                    ;;
                 gnome-terminal.wrapper)
                     termcmd=(gnome-terminal --wait) # gnome-terminal.wrapper does not support --wait
                     [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
