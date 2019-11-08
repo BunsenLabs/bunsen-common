@@ -1,3 +1,10 @@
+bunsen-common (10.2.2-1) lithium; urgency=medium
+
+  * bl-includes: jgmenu functions: add pango escaping for descriptions.
+  * bl-includes: terminalCheck(): add tilix support.
+
+ -- John Crawley <john@bunsenlabs.org>  Fri, 08 Nov 2019 16:18:26 +0900
+
 bunsen-common (10.2.1-1) lithium; urgency=medium
 
   * bl-includes: terminalCheck(): add support for mate-terminal.
