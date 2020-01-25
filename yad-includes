@@ -63,7 +63,7 @@ yad_error(){
 }
 
 ############################################################################
-# DO NOT call this functon directly.
+# DO NOT call this function directly.
 # It is used by the yad functions above.
 _yad_setargs(){
     # Catch direct calls
@@ -100,7 +100,7 @@ _yad_setargs(){
     i=
     for i in "${!argsetter[@]}"
     do
-        [[ "$i" = --button* ]] && continue
+        [[ "$i" = --button[0-9]* ]] && continue
         if [[ ${argsetter[$i]} ]]
         then
             yadargs+=("$i=${argsetter[$i]}")
