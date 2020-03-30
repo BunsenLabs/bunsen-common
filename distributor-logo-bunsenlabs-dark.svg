@@ -41,7 +41,7 @@
          offset="1" />
     </linearGradient>
     <filter
-       color-interpolation-filters="sRGB"
+       style="color-interpolation-filters:sRGB"
        id="filter3174">
       <feGaussianBlur
          id="feGaussianBlur3176"
@@ -56,11 +56,11 @@
        xlink:href="#linearGradient3737"
        gradientUnits="userSpaceOnUse" />
     <filter
+       style="color-interpolation-filters:sRGB"
        x="-0.192"
        y="-0.192"
        width="1.3839999"
        height="1.3839999"
-       color-interpolation-filters="sRGB"
        id="filter3794">
       <feGaussianBlur
          id="feGaussianBlur3796"
@@ -343,19 +343,19 @@
   <g
      transform="matrix(1.294018,0,0,1.294018,-16.019607,-14.811571)"
      id="layer7"
-     style="display:inline">
+     style="display:inline;fill:#607d8b;fill-opacity:1">
     <g
        transform="matrix(0.07579473,0,0,0.07579473,-10.819259,26.25778)"
        id="flame1"
-       style="display:inline;opacity:1;fill:#d3dae3;fill-opacity:1;stroke:none">
+       style="display:inline;opacity:1;fill:#607d8b;fill-opacity:1;stroke:none">
       <path
-         style="display:inline;fill:#d3dae3;fill-opacity:1;stroke:none"
+         style="display:inline;fill:#607d8b;fill-opacity:1;stroke:none"
          d="M 647.63727,487.6318 C 543.06745,273.08097 579.53505,-35.80817 834.71116,-195.41718 c -10.03397,29.35837 -6.74609,78.31513 7.51589,114.87247 C 881.34338,9.68059 959.04502,86.28183 987.49639,231.84628 1026.8788,435.57925 952.28255,630.18389 819.30085,783.37815 885.94407,566.61669 919.64813,302.23882 760,172.36218 648.26347,272.58339 644.01796,365.89856 647.63727,487.6318 Z"
          id="path3774" />
     </g>
     <path
        id="path3774-7"
        d="M 38.268233,63.217702 C 30.342392,46.955879 33.106444,23.54371 52.447448,11.446189 c -0.760522,2.225209 -0.511318,5.935874 0.569665,8.706727 2.964812,6.838603 8.854186,12.644573 11.01065,23.677591 2.984979,15.441886 -2.669023,30.191892 -12.748335,41.803209 5.051205,-16.429376 7.605795,-36.467825 -4.494692,-46.31179 -8.46904,7.596239 -8.790828,14.669038 -8.516503,23.895776 z"
-       style="display:inline;opacity:1;fill:#d3dae3;fill-opacity:1;stroke:none;stroke-width:0.07579473" />
+       style="display:inline;opacity:1;fill:#607d8b;fill-opacity:1;stroke:none;stroke-width:0.07579473" />
   </g>
 </svg>
