@@ -41,11 +41,13 @@ environment, so will probably have to be exported by the calling script.
 
 All other arguments are taken as apt-get options or package names to install.
 
-This script will open a terminal window to run the installer, if needed,
-and fetch the return value from a temporary file.
+This script will open a terminal window to run the installer,
+and write the return value to a temporary file. (This is needed because
+there is no other way to query the return value of a process which
+was run in a new terminal.)
 This is useful if launching from a GUI, but in a script known to be
-already running in a terminal, it is not needed.
-The promptInstall() function from bl-includes is enough.
+already running in a terminal, it is not needed;
+the promptInstall() function from bl-includes is enough.
 '
 
 BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
@@ -54,7 +56,8 @@ trap 'send_return' EXIT
 
 send_return(){
     local retval=$?
-    [[ -n "$retfile" ]] && echo "$retval" > "$retfile"
+    [[ -f "$retfile" ]] && echo "$retval" > "$retfile"
+    sleep 0.3 # allow time to write to $retfile before exiting
 }
 
 if ! . "$BL_COMMON_LIBDIR/bl-includes" 2> /dev/null; then
