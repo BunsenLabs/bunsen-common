@@ -4,3 +4,6 @@ distributor-logo-bunsenlabs.svg usr/share/icons/hicolor/scalable/places
 distributor-logo-bunsenlabs-dark.svg usr/share/icons/hicolor/scalable/places
 distributor-logo-bunsenlabs-hydrogen.svg usr/share/icons/hicolor/scalable/places
 bl-install usr/bin
+bl-reload-gtk23 usr/bin
+bl-xinerama-prop usr/bin
+

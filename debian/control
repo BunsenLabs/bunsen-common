@@ -2,7 +2,14 @@ Source: bunsen-common
 Section: misc
 Priority: optional
 Maintainer: John Crawley <john@bunsenlabs.org>
-Build-Depends: debhelper (>= 10), help2man
+Build-Depends:
+  debhelper (>= 10),
+  help2man,
+  gir1.2-gtk-3.0,
+  python3 (>= 3.7),
+  python3-gi (>= 3.30.4),
+  python3-psutil (>= 5.5.1),
+  python3-xlib
 Standards-Version: 4.3.0
 Homepage: https://github.com/BunsenLabs/bunsen-common
 Vcs-Git: https://github.com/BunsenLabs/bunsen-common.git
@@ -10,7 +17,12 @@ Vcs-Browser: https://github.com/BunsenLabs/bunsen-common.git
 
 Package: bunsen-common
 Architecture: all
-Depends: ${misc:Depends}
+Depends: ${misc:Depends},
+  gir1.2-gtk-3.0,
+  python3 (>= 3.7),
+  python3-gi (>= 3.30.4),
+  python3-psutil (>= 5.5.1),
+  python3-xlib,
 Description: Various shared files for BunsenLabs
  Files holding shared script functions, images
  and other data which will be used by various packages
