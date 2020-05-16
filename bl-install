@@ -22,8 +22,7 @@
 
 HELP='bl-install: a wrapper round the promptInstall() function in bl-includes
 
-Usage:
-bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" --setup "function_name" [apt option] package [package...]
+Usage:  bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" --setup "function_name" [apt option] package [package...]
 
     -h --help                   show this message and exit
     -n --name       <string>    descriptive name of package(s) to be installed
@@ -49,6 +48,16 @@ This is useful if launching from a GUI, but in a script known to be
 already running in a terminal, it is not needed;
 the promptInstall() function from bl-includes is enough.
 '
+# if help option anywhere in args, output $HELP and exit immediately
+for i in "$@"
+do
+    case "$i" in
+    -h|--help)
+        echo "$HELP"
+        exit 0
+        ;;
+    esac
+done
 
 BL_COMMON_LIBDIR='/usr/lib/bunsen/common'
 
