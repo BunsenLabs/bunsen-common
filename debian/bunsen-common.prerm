@@ -1,0 +1,27 @@
+#!/bin/sh
+# prerm script for bunsen-common
+
+# Summary of ways this script is called:
+#    prerm remove
+#    old-prerm upgrade new-version
+#    new-prerm failed-upgrade old-version
+#    conflictor's-prerm remove in-favour package new-version
+#    deconfigured's-prerm deconfigure in-favour package-being-installed version removing conflicting-package version
+
+set -e
+
+BL_START_HERE='usr/share/icons/hicolor/scalable/places/start-here.svg'
+
+case $1 in
+remove|deconfigure)
+    if update-alternatives --list start-here.svg >/dev/null 2>&1 \
+    && [ -f "$BL_START_HERE" ]
+    then
+        update-alternatives --remove start-here.svg "$BL_START_HERE"
+    fi
+    ;;
+esac
+
+#DEBHELPER#
+
+exit 0
