@@ -1,3 +1,10 @@
+bunsen-common (10.2.5-2) lithium; urgency=medium
+
+  * Add distributor-logo.svg and start-here.svg to hicolor icons.
+  * Rename some other icon symlinks.
+
+ -- John Crawley <john@bunsenlabs.org>  Thu, 09 Jul 2020 16:09:15 +0900
+
 bunsen-common (10.2.5-1) lithium; urgency=medium
 
   * bl-install: two small tweaks.
