@@ -10,7 +10,7 @@
 
 set -e
 
-BL_START_HERE='/usr/share/icons/hicolor/scalable/places/start-here.svg'
+BL_START_HERE='/usr/share/icons/hicolor/scalable/places/start-here-bunsenlabs.svg'
 
 case $1 in
 remove|deconfigure)
