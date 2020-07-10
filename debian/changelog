@@ -1,3 +1,9 @@
+bunsen-common (10.2.5-5) lithium; urgency=medium
+
+  * Add 48x48 png icon to hicolor theme, for systems without svg support.
+
+ -- John Crawley <john@bunsenlabs.org>  Fri, 10 Jul 2020 16:55:12 +0900
+
 bunsen-common (10.2.5-4) lithium; urgency=medium
 
   * Remove distributor-logo.svg and start-here.svg from hicolor after all,
