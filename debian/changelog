@@ -1,4 +1,4 @@
-bunsen-common (10.2.5-5) lithium; urgency=medium
+bunsen-common (10.2.6-1) lithium; urgency=medium
 
   * Add 48x48 png icon to hicolor theme, for systems without svg support.
 
