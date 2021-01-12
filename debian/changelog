@@ -1,3 +1,9 @@
+bunsen-common (10.2.7-1) lithium; urgency=medium
+
+  * bl-includes: apt functions: handle error messages when password is wrong.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 12 Jan 2021 16:37:25 +0900
+
 bunsen-common (10.2.6-1) lithium; urgency=medium
 
   * Add 48x48 png icon to hicolor theme, for systems without svg support.
