@@ -1,3 +1,13 @@
+bunsen-common (11.0-1) beryllium; urgency=medium
+
+  * Migrate for Debian Bullseye.
+    + debian/control: Bump Standards-Version to 4.5.1 - no changes required.
+    + debian/control: Declare debhelper compatibility 12.
+    + Remove debian/compat, now unnecessary.
+    + debian/copyright: update year.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 02 Feb 2021 16:17:28 +0900
+
 bunsen-common (10.2.7-1) lithium; urgency=medium
 
   * bl-includes: apt functions: handle error messages when password is wrong.
