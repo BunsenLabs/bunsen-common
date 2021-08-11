@@ -65,7 +65,11 @@ trap 'send_return' EXIT
 
 send_return(){
     local retval=$?
-    [[ -f "$retfile" ]] && echo "$retval" > "$retfile"
+    [[ -z "$retfile" ]] && return 0
+    echo "$retval" > "$retfile" || {
+        echo "$0: unable to write to $retfile" >&2
+        return 1
+    }
     sleep 0.3 # allow time to write to $retfile before exiting
 }
 
@@ -112,12 +116,12 @@ do
         shift 2
         ;;
     -*) # other apt-get options
-        args+=($1)
+        args+=("$1")
         shift
         ;;
     *)
-        args+=($1)
-        packages+=($1) # assume any other argument is a package
+        args+=("$1")
+        packages+=("$1") # assume any other argument is a package
         shift
         ;;
     esac

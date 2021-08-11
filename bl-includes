@@ -2,8 +2,8 @@
 #    for Bunsen Labs Linux.
 #    Copyright (C) 2012 Philip Newborough <corenominal@corenominal.org>
 #    Copyright (C) 2013 Aleks-Daniel Jakimenko
-#    Copyright (C) 2016  xaos52 <xaos52@gmail.com>
-#    Copyright (C) 2015-2020  John Crawley <john@bunsenlabs.org>
+#    Copyright (C) 2016 xaos52 <xaos52@gmail.com>
+#    Copyright (C) 2015-2021 John Crawley <john@bunsenlabs.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -25,8 +25,9 @@
 #     exit 1
 # fi
 
-# NOTE: Do not source this file in non-Bash shell scripts.
-# It uses some "bashisms".
+# NOTE: Do not source this file in non-Bash shell scripts,
+# it uses some "bashisms".
+# shellcheck shell=bash
 
 ######## jgmenu versions of OB menu creation functions #################
 
@@ -147,13 +148,13 @@ OBlabelEscape() {
 terminalCheck() {
     if ! [[ -t 0 && -t 1 && -t 2 ]]; then # not attached to terminal
         if [[ -n $DISPLAY ]]; then # running X
-            local -a termcmd args
+            local -a termcmd
             local termname
             if [[ ${1-} = '-T' ]];then
                 local title=${2-}
                 shift 2
             fi
-            termname=$( readlink /etc/alternatives/x-terminal-emulator )
+            termname=$( readlink -f "$( which x-terminal-emulator )" )
             termname=${termname##*/}
             badterm_msg="$0: $termname is not supported.
 Please choose a different x-terminal-emulator."
@@ -162,22 +163,22 @@ Please choose a different x-terminal-emulator."
                 lxterminal)
                     termcmd=(lxterminal --no-remote) # otherwise lxterminal does not start a new process
                     [[ -n $title ]] && termcmd+=(-T "$title")
-                    args=(-e)
+                    termcmd+=(-e)
                     ;;
                 mate-terminal.wrapper)
                     termcmd=(mate-terminal --disable-factory) # mate-terminal.wrapper does not support --disable-factory
                     [[ -n $title ]] && termcmd+=(-t "$title") # but mate-terminal needs -t for -T option
-                    args=(-x)
+                    termcmd+=(-x)
                     ;;
                 gnome-terminal.wrapper)
                     termcmd=(gnome-terminal --wait) # gnome-terminal.wrapper does not support --wait
                     [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
-                    args=(--) # -x is deprecated
+                    termcmd+=(--) # -x is deprecated
                     ;;
                 tilix.wrapper)
                     termcmd=(tilix --new-process) # tilix.wrapper does not support --new-process
                     [[ -n $title ]] && termcmd+=(-t "$title") # but tilix needs -t for -T option
-                    args=(-e)
+                    termcmd+=(-e)
                     ;;
                 qterminal|terminology)
                     echo "$badterm_msg" >&2
@@ -186,11 +187,10 @@ Please choose a different x-terminal-emulator."
                 *)
                     termcmd=(x-terminal-emulator) # the normal case
                     [[ -n $title ]] && termcmd+=(-T "$title")
-                    args=(-e)
+                    termcmd+=(-e)
                     ;;
             esac
-            args+=("$0" "$@")
-            exec "${termcmd[@]}" "${args[@]}"
+            exec "${termcmd[@]}" "$0" "$@"
         else
             echo "$0: no terminal" >&2
             exit 1
@@ -429,7 +429,8 @@ allInstalled() {
 
 # Apt-get functions.
 
-# apt-get update, exit if error message.
+# apt-get update, exit if there is an error message.
+# (apt-get will return 0 even if there is a warning message on stderr)
 # safeUpdate --ignore 'string' to ignore certain error message
 safeUpdate() {
     local ignore_string=
@@ -452,7 +453,8 @@ safeUpdate() {
     fi
 }
 
-# apt-get upgrade, exit if error message.
+# apt-get upgrade, exit if there is an error message.
+# (apt-get will return 0 even if there is a warning message on stderr)
 # safeUpgrade [--dist-upgrade (for dist-upgrade)] [--apt-get-option]
 safeUpgrade() {
     local cmd='upgrade'
