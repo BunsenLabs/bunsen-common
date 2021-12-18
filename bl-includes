@@ -35,6 +35,8 @@
 # Submenu content is stored under index of its tag,
 # 'root' indexes the root menu.
 
+# The content of menu_content is printed out with jgmenuEnd()
+
 # Put an item in the root menu or any submenu.
 # Usage: jgmenuItem tag label command
 # Tag 'root' indicates root menu item.
