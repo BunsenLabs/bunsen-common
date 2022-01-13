@@ -1,3 +1,11 @@
+bunsen-common (11.1-1) beryllium; urgency=medium
+
+  * bl-includes: 
+     - prompt(): allow quotes around test string.
+     - errorExit(): if function log() exists, log the error message.
+
+ -- John Crawley <john@bunsenlabs.org>  Thu, 13 Jan 2022 17:45:30 +0900
+
 bunsen-common (11.0-1) beryllium; urgency=medium
 
   * Migrate for Debian Bullseye.
