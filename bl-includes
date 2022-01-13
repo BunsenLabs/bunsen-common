@@ -146,6 +146,8 @@ OBlabelEscape() {
 
 # rerun the calling script in terminal if necessary
 # Usage: terminalCheck [ -T title ] [arguments...]
+# If the calling script takes arguments, pass them to this function:
+# terminalCheck "$@"
 terminalCheck() {
     if ! [[ -t 0 && -t 1 && -t 2 ]]; then # not attached to terminal
         if [[ -n $DISPLAY ]]; then # running X
@@ -265,6 +267,10 @@ say() {
 # Usage errorExit message [details]
 errorExit() {
     say $'\n'"$1"$'\n' '1' >&2
+    [[ $(type -t log) = 'function' ]] && {
+        log "######## ERROR ########
+$1"
+    }
     [[ ${2-} ]] && {
         while true
         do
