@@ -419,7 +419,7 @@ allInstalled() {
     local pkg=
     for pkg in "$@"
     do
-        [[ $(dpkg-query --show --showformat='${db:Status-Abbrev;2}' "$pkg" 2>/dev/null) = ii ]] || return 1
+        [[ $(dpkg-query --show --showformat='${db:Status-Abbrev}' "$pkg" 2>/dev/null) =~ ^(i|h)i' '$ ]] || return 1
         # NB dpkg will change soon, possibly making the commented code below unusable anyway.
         # fast but returns false positive if files remain in /etc
         #[[ -f /var/lib/dpkg/info/${pkg}.list ]] || return 1
