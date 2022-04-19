@@ -30,7 +30,7 @@
 
 ######## jgmenu versions of OB menu creation functions #################
 
-# Associative array menu_content is generated.
+# Associative array menu_content is generated, then printed out.
 # Submenu content is stored under index of its tag,
 # 'root' indexes the root menu.
 
