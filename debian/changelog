@@ -1,3 +1,10 @@
+bunsen-common (11.1.1-1) beryllium; urgency=medium
+
+  * bl-install: bugfix: debian package name test: cope with various locales.
+  * bl-includes:allInstalled(): tighten test to allow for held packages
+
+ -- John Crawley <john@bunsenlabs.org>  Sat, 30 Apr 2022 14:22:58 +0900
+
 bunsen-common (11.1-1) beryllium; urgency=medium
 
   * bl-includes: 
