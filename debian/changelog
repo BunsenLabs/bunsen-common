@@ -1,3 +1,9 @@
+bunsen-common (11.1.2-1) beryllium; urgency=medium
+
+  * bl-includes: tweak jgmenu functions.
+
+ -- John Crawley <john@bunsenlabs.org>  Fri, 14 Oct 2022 15:19:21 +0900
+
 bunsen-common (11.1.1-1) beryllium; urgency=medium
 
   * bl-install: bugfix: debian package name test: cope with various locales.
