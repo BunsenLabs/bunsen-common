@@ -42,7 +42,7 @@
 # Tag 'root' indicates root menu item.
 jgmenuItem() {
     _jgmenuSetHeader "$1"
-    menu_content[$1]+="\"\"\"$(pangoEscape "${2}")\"\"\"","\"\"\"${3}\"\"\""$'\n'
+    menu_content[$1]+="\"\"\"$(pangoEscape "${2}")\"\"\",\"\"\"${3}\"\"\""$'\n'
 }
 
 # Add a separator.
@@ -61,11 +61,11 @@ jgmenuSubmenu() {
 
 # Print root menu, then submenus.
 jgmenuEnd() {
-    printf '%b\n' "${menu_content[root]}"
+    printf '%s\n' "${menu_content[root]}"
     unset 'menu_content[root]'
     for i in "${!menu_content[@]}"
     do
-        printf '%b\n' "${menu_content[$i]}"
+        printf '%s\n' "${menu_content[$i]}"
     done
     unset 'menu_content'
 }
