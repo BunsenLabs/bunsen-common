@@ -3,7 +3,7 @@
 
 # main packaging script based on dh7 syntax
 %:
-	dh $@ 
+	dh $@
 
 override_dh_installman:
 	debian/genman.sh
@@ -12,4 +12,3 @@ override_dh_installman:
 override_dh_clean:
 	dh_clean
 	debian/genman.sh --clean
-

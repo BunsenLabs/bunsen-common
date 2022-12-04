@@ -13,7 +13,7 @@ bunsen-common (11.1.1-1) beryllium; urgency=medium
 
 bunsen-common (11.1-1) beryllium; urgency=medium
 
-  * bl-includes: 
+  * bl-includes:
      - prompt(): allow quotes around test string.
      - errorExit(): if function log() exists, log the error message.
 
@@ -70,7 +70,7 @@ bunsen-common (10.2.5-1) lithium; urgency=medium
 bunsen-common (10.2.4-1) lithium; urgency=medium
 
   [ hhhorb ]
-  * Improve BunsenLabs icons, add dark version. 
+  * Improve BunsenLabs icons, add dark version.
 
  -- John Crawley <john@bunsenlabs.org>  Mon, 30 Mar 2020 12:29:00 +0900
 
@@ -270,7 +270,7 @@ bunsen-common (8.5-1) bunsen-hydrogen; urgency=medium
 
 bunsen-common (8.4.2-1) bunsen-hydrogen; urgency=high
 
-  * bl-include.cfg: safeUpdate(): Fix bug where empty ignore_string suppressed errors. 
+  * bl-include.cfg: safeUpdate(): Fix bug where empty ignore_string suppressed errors.
 
  -- John Crawley <john@bunsenlabs.org>  Sun, 13 Dec 2015 14:54:22 +0900
 
