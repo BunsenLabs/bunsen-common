@@ -1,3 +1,13 @@
+bunsen-common (12.0-1) boron; urgency=medium
+
+  * Migrate for Debian Bookworm
+    + debian/control: Bump Standards-Version to 4.6.2.0 - no changes required.
+    + debian/control: Declare debhelper compatibility 13.
+    + debian/copyright: update year.
+  * Update genman.sh to ver. 20220126.
+
+ -- John Crawley <john@bunsenlabs.org>  Wed, 18 Jan 2023 16:34:22 +0900
+
 bunsen-common (11.1.2-1) beryllium; urgency=medium
 
   * bl-includes: tweak jgmenu functions.
