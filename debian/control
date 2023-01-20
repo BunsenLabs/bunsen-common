@@ -3,11 +3,11 @@ Section: misc
 Priority: optional
 Maintainer: John Crawley <john@bunsenlabs.org>
 Build-Depends: debhelper-compat (= 13), help2man
-Standards-Version: 4.6.2.0
+Rules-Requires-Root: no
+Standards-Version: 4.6.1.0
 Homepage: https://github.com/BunsenLabs/bunsen-common
 Vcs-Git: https://github.com/BunsenLabs/bunsen-common.git
 Vcs-Browser: https://github.com/BunsenLabs/bunsen-common.git
-Bugs: https://github.com/BunsenLabs/bunsen-common/issues
 
 Package: bunsen-common
 Architecture: all
