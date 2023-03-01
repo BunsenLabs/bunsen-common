@@ -173,11 +173,12 @@ Please choose a different x-terminal-emulator."
                     [[ -n $title ]] && termcmd+=(-t "$title") # but mate-terminal needs -t for -T option
                     termcmd+=(-x)
                     ;;
-                gnome-terminal.wrapper)
-                    termcmd=(gnome-terminal --wait) # gnome-terminal.wrapper does not support --wait
-                    [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
-                    termcmd+=(--) # -x is deprecated
-                    ;;
+# gnome terminal now waits if invoked as x-terminal-emulator
+#                gnome-terminal.wrapper)
+#                    termcmd=(gnome-terminal --wait) # gnome-terminal.wrapper does not support --wait
+#                    [[ -n $title ]] && termcmd+=(-t "$title") # but gnome-terminal needs -t for -T option
+#                    termcmd+=(--) # -x is deprecated
+#                    ;;
                 tilix.wrapper)
                     termcmd=(tilix --new-process) # tilix.wrapper does not support --new-process
                     [[ -n $title ]] && termcmd+=(-t "$title") # but tilix needs -t for -T option
