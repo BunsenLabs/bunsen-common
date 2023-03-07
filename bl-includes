@@ -81,9 +81,9 @@ _jgmenuSetHeader(){
 }
 
 pangoEscape() {
-    local string="${1//&/&amp;}"
-    string="${string//</&lt;}"
-    string="${string//>/&gt;}"
+    local string="${1//&/\&amp;}"
+    string="${string//</\&lt;}"
+    string="${string//>/\&gt;}"
     printf '%s' "$string"
 }
 
@@ -130,11 +130,11 @@ menuEnd() {
 
 # escape special characters
 XMLescape() {
-    local string="${1//&/&amp;}"
-    string="${string//</&lt;}"
-    string="${string//>/&gt;}"
-    string="${string//\"/&quot;}"
-    string="${string//\'/&apos;}"
+    local string="${1//&/\&amp;}"
+    string="${string//</\&lt;}"
+    string="${string//>/\&gt;}"
+    string="${string//\"/\&quot;}"
+    string="${string//\'/\&apos;}"
     printf '%s' "$string"
 }
 OBlabelEscape() {
