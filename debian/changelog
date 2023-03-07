@@ -1,3 +1,10 @@
+bunsen-common (12.1-1) boron; urgency=medium
+
+  * Escape ampersands in bash substitutions to work round option
+     patsub_replacement in bash 5.2.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 07 Mar 2023 16:48:36 +0900
+
 bunsen-common (12.0-2) boron; urgency=medium
 
   * Lintian fixes.
