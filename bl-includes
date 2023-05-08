@@ -303,7 +303,7 @@ Enter \"q\" to quit, \"c\" to continue:
 
 # Usage: prompt text [ Y | N | Q | <string> ]
 prompt() {
-    local answer prompt default
+    local answer prompt default test
     if [[ ${2-} && ${2^} = Q ]]; then
         while true; do
             read -srn1 -p "$1" answer
@@ -328,8 +328,10 @@ prompt() {
         read -r -p "$1 ${prompt:+[$prompt] }" answer
 
         if [[ ! $prompt && ! $default ]]; then
+            test=${2-}
             # allow for quotes round string (may be unbalanced)
-            if [[ $answer =~ [\'\"]?${2-}[\'\"]? ]]; then
+            # case-insensitive comparison
+            if [[ ${answer^^} =~ [\'\"]?${test^^}[\'\"]? ]]; then
                 echo
                 return 0
             elif [[ ${answer^} = Q ]]; then
