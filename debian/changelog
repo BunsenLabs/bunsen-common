@@ -1,3 +1,10 @@
+bunsen-common (12.1.2-1) boron; urgency=medium
+
+  * bl-includes: when invoking errorExit() do not force 'return 1'.
+     (User is offered the choice of continuing after viewing error details.)
+
+ -- John Crawley <john@bunsenlabs.org>  Wed, 02 Aug 2023 15:05:41 +0900
+
 bunsen-common (12.1.1-1) boron; urgency=medium
 
   * bl-includes: prompt(): use case-insensitive check on test string.
