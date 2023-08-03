@@ -460,7 +460,7 @@ safeUpdate() {
     else
         exec 3>&-
         errorExit 'There were problems during the update.' "$apt_error"
-#        return 1
+        return 1
     fi
 }
 
@@ -488,7 +488,7 @@ safeUpgrade() {
     else
         exec 3>&-
         errorExit 'There were problems during the upgrade.' "${apt_error:-Upgrade Aborted}"
-#        return 1
+        return 1
     fi
 }
 
@@ -509,7 +509,7 @@ safeInstall() {
     else
         exec 3>&-
         errorExit "There were problems installing ${*}" "${apt_error:-Install Aborted}"
-#        return 1
+        return 1
     fi
 }
 
@@ -530,6 +530,6 @@ safeRemove() {
     else
         exec 3>&-
         errorExit "There were problems removing ${*}" "${apt_error:-Remove Aborted}"
-#        return 1
+        return 1
     fi
 }
