@@ -22,7 +22,7 @@
 
 HELP='bl-install: a wrapper round the promptInstall() function in bl-includes
 
-Usage:  bl-install -n "name of app(s)" -m "message text" -f "/path/to/file" --setup "function_name" [apt option] package [package...]
+Usage:  bl-install [-n "name of app(s)"] [-m "message text"] [-f "/path/to/file"] [--setup "function_name"] [apt option] package [package...]
 
     -h --help                   show this message and exit
     -n --name       <string>    descriptive name of package(s) to be installed
@@ -65,7 +65,7 @@ trap 'send_return' EXIT
 
 send_return(){
     local retval=$?
-    [[ -z "$retfile" ]] && return 0
+    [[ -z "$retfile" ]] && return "$retval"
     echo "$retval" > "$retfile" || {
         echo "$0: unable to write to $retfile" >&2
         return 1
@@ -86,7 +86,7 @@ s_args=()
 args=()
 packages=()
 
-while [[ ${1+x} ]]
+while [[ ${1+x} = x ]]
 do
     case "$1" in
     -n|--name)
