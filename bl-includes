@@ -445,17 +445,20 @@ allInstalled() {
 # safeUpdate --ignore 'string' to ignore certain error message
 safeUpdate() {
     local ignore_string=
+    # TODO: check if password error ignore is no longer needed
     local ignore_string_pw='Sorry, try again.' # message if password mistyped
     [[ ${1-} = '--ignore' ]] && {
         ignore_string="${2-}"
     }
-    local temp apt_error
+    local temp apt_error ret
     temp=$(mktemp)
-    if LC_MESSAGES=C sudo apt-get update 2>"$temp" && {
-            apt_error=$(<"$temp")
-            rm "$temp"
+    LC_MESSAGES=C sudo apt-get update 2>"$temp"
+    ret=$?
+    apt_error=$(<"$temp")
+    rm "$temp"
+    if [[ $ret = 0 ]] && {
             [[ -z "$apt_error" ]] || ! grep -iqEv "(${ignore_string_pw:-$^}|${ignore_string:-$^}|^$)" <<<"$apt_error"
-            }
+        }
     then
         say 'Finished update' 1
         return 0
@@ -478,13 +481,15 @@ safeUpgrade() {
     local ignore_string1='Extracting templates from packages: 100%' # apt sends this to stderr!
     local ignore_string2='Retrieving bug reports... Done' # apt-listbugs sends this to stderr!
     local ignore_string3='Parsing Found/Fixed information... Done' # apt-listbugs sends this to stderr!
-    local temp apt_error
+    local temp apt_error ret
     temp=$(mktemp)
-    if LC_MESSAGES=C sudo apt-get "$cmd" "${@}" 2>"$temp" && {
-            apt_error=$(<"$temp")
-            rm "$temp"
+    LC_MESSAGES=C sudo apt-get "$cmd" "${@}" 2>"$temp"
+    ret=$?
+    apt_error=$(<"$temp")
+    rm "$temp"
+    if [[ $ret = 0 ]] && {
             [[ -z "$apt_error" ]] || ! grep -iqEv "(${ignore_string_pw:-$^}|${ignore_string1:-$^}|${ignore_string2:-$^}|${ignore_string3:-$^}|^$)" <<<"$apt_error"
-            }
+        }
     then
         say 'Finished upgrade.' 1
         return 0
@@ -500,13 +505,15 @@ safeInstall() {
     local ignore_string1='Extracting templates from packages: 100%' # apt sends this to stderr!
     local ignore_string2='Retrieving bug reports... Done' # apt-listbugs sends this to stderr!
     local ignore_string3='Parsing Found/Fixed information... Done' # apt-listbugs sends this to stderr!
-    local temp apt_error
+    local temp apt_error ret
     temp=$(mktemp)
-    if LC_MESSAGES=C sudo apt-get install "${@}" 2>"$temp" && {
-            apt_error=$(<"$temp")
-            rm "$temp"
+    LC_MESSAGES=C sudo apt-get install "${@}" 2>"$temp"
+    ret=$?
+    apt_error=$(<"$temp")
+    rm "$temp"
+    if [[ $ret = 0 ]] && {
             [[ -z "$apt_error" ]] || ! grep -iqEv "(${ignore_string_pw:-$^}|${ignore_string1:-$^}|${ignore_string2:-$^}|${ignore_string3:-$^}|^$)" <<<"$apt_error"
-            }
+        }
     then
         say 'Installation finished sucessfully.' 1
         return 0
@@ -523,13 +530,15 @@ safeRemove() {
     local ignore_string2='Retrieving bug reports... Done' # apt-listbugs sends this to stderr!
     local ignore_string3='Parsing Found/Fixed information... Done' # apt-listbugs sends this to stderr!
     local apt_error
-    local temp apt_error
+    local temp apt_error ret
     temp=$(mktemp)
-    if LC_MESSAGES=C sudo apt-get remove "${@}" 2>"$temp" && {
-            apt_error=$(<"$temp")
-            rm "$temp"
+    LC_MESSAGES=C sudo apt-get remove "${@}" 2>"$temp"
+    ret=$?
+    apt_error=$(<"$temp")
+    rm "$temp"
+    if [[ $ret = 0 ]] && {
             [[ -z "$apt_error" ]] || ! grep -iqEv "(${ignore_string_pw:-$^}|${ignore_string1}|${ignore_string2}|${ignore_string3}|^$)" <<<"$apt_error"
-            }
+        }
     then
         say "Successfully removed ${*}" 1
         return 0
