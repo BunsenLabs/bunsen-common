@@ -1,3 +1,10 @@
+bunsen-common (13.0-1) carbon; urgency=medium
+
+  * Migrate for Debian Trixie:
+    + debian/control: Bump Standards-Version to 4.7.0.0 - no changes required.
+
+ -- John Crawley <john@bunsenlabs.org>  Thu, 23 May 2024 16:24:24 +0900
+
 bunsen-common (12.1.5-1) boron; urgency=medium
 
   * bl-includes: make apt error messages available for display to user.
