@@ -48,12 +48,12 @@ yad_popup_args=('--undecorated' '--fixed' '--on-top')
 
 yad_question(){
     local yadargs=()
-    _yad_setargs '--button=Yes:0' '--button=No:1' "$@"
+    _yad_setargs '--button=Yes:0' '--button=No:1' '--image=dialog-question' "$@"
     yad "${yadargs[@]}"
 }
 yad_info(){
     local yadargs=()
-    _yad_setargs '--button=OK:0' "$@"
+    _yad_setargs '--button=OK:0' '--image=dialog-information' "$@"
     yad "${yadargs[@]}"
 }
 yad_error(){
@@ -62,7 +62,7 @@ yad_error(){
     yad "${yadargs[@]}"
 }
 
-############################################################################
+########################################################################
 # DO NOT call this function directly.
 # It is used by the yad functions above.
 _yad_setargs(){
