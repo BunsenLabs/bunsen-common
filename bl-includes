@@ -184,7 +184,7 @@ Please choose a different x-terminal-emulator."
                     [[ -n $title ]] && termcmd+=(-t "$title") # but tilix needs -t for -T option
                     termcmd+=(-e)
                     ;;
-                qterminal|terminology)
+                qterminal|terminology|sakura)
                     echo "$badterm_msg" >&2
                     exit 1
                     ;;
