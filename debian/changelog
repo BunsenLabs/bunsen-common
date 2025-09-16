@@ -1,3 +1,9 @@
+bunsen-common (12.1.6-1) carbon; urgency=medium
+
+  * bl-includes: terminalCheck(): add sakura to unsupported terminal list.
+
+ -- John Crawley <john@bunsenlabs.org>  Tue, 16 Sep 2025 16:40:55 +0900
+
 bunsen-common (12.1.5-1) boron; urgency=medium
 
   * bl-includes: make apt error messages available for display to user.
