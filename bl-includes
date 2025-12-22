@@ -3,7 +3,7 @@
 #    Copyright (C) 2012 Philip Newborough <corenominal@corenominal.org>
 #    Copyright (C) 2013 Aleks-Daniel Jakimenko
 #    Copyright (C) 2016 xaos52 <xaos52@gmail.com>
-#    Copyright (C) 2015-2023 John Crawley <john@bunsenlabs.org>
+#    Copyright (C) 2015-2025 John Crawley <john@bunsenlabs.org>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -163,6 +163,11 @@ terminalCheck() {
 Please choose a different x-terminal-emulator."
             case $termname # cope with terminal inconsistencies
             in
+                xfce4-terminal.wrapper)
+                    termcmd=(xfce4-terminal --disable-server) # xfce4-terminal.wrapper does not support --disable-server
+                    [[ -n $title ]] && termcmd+=(-T "$title")
+                    termcmd+=(-x)
+                    ;;
                 lxterminal)
                     termcmd=(lxterminal --no-remote) # otherwise lxterminal does not start a new process
                     [[ -n $title ]] && termcmd+=(-T "$title")
@@ -184,7 +189,7 @@ Please choose a different x-terminal-emulator."
                     [[ -n $title ]] && termcmd+=(-t "$title") # but tilix needs -t for -T option
                     termcmd+=(-e)
                     ;;
-                qterminal|terminology)
+                qterminal|terminology|sakura)
                     echo "$badterm_msg" >&2
                     exit 1
                     ;;
@@ -232,7 +237,7 @@ connectiontest() {
             say "$TEXT_ABORT" 2
             (( attempts == 0 )) && exit 1 || return 1
         fi
-        tput clear
+#        tput clear
     done
 }
 
@@ -370,7 +375,10 @@ promptInstall() {
         fi
     fi
 
-    tput clear
+#    tput clear
+    echo '
+################################################
+'
     local title="INSTALL ${1^^}"
     say "
 $title
@@ -378,29 +386,31 @@ ${title//?/-}
 
 $2
 "
-
     prompt '  Run the installer now?' || return 1
 
-    tput clear
+#    tput clear
     connectiontest || return 1
 
     if [[ -n $setupFunction ]]; then
         "$setupFunction" || return 1 # run setup function if it exists
     fi
 
-    tput clear
+#    tput clear
     say 'Updating sources...' 1
     safeUpdate || say 'Continuing in spite of update problems...' 3
 
-    tput clear
+#    tput clear
     say 'Installing package...' 1
     safeInstall "${@:3}" || return 1
 
-    tput clear
+#    tput clear
     say "
 $1 has been installed successfully.
 
-Hit any key to exit..."
+Hit any key to exit...
+
+################################################
+"
     read -srn1
     return 0
 }
